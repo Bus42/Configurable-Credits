@@ -1,0 +1,90 @@
+@import './keyframes.css';
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Orbitron:wght@400..900&family=Rubik+Distressed&display=swap');
+
+:root {
+  --title-font: 'Rubik Distressed', sans-serif;
+  --job-font: 'Bungee Tint', sans-serif;
+  --text-font: 'Orbitron', sans-serif;
+  --wrapper-color: #0ff;
+  --job-color: #ff1493;
+  --name-color: #bf00ff;
+  --top-image-color: #ff6700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #000;
+  /* Dark background for neon glow */
+  overflow: hidden;
+}
+
+/* Outer container for scroll animation */
+.wrapper,
+#credits {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  font: 600 60px/1 var(--text-font), sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--wrapper-color);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Movie title (optional) */
+.movie {
+  margin-bottom: 25px;
+  font-size: 50px;
+}
+
+/* Section titles */
+.job {
+  font-family: var(--job-font);
+  margin-top: 80px;
+  margin-bottom: 40px;
+  font-size: 72px;
+  font-weight: bold;
+  color: var(--job-color);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Entry names */
+.name {
+  margin-bottom: 20px;
+  font-size: 45px;
+  color: var(--name-color);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.introText {
+  font-family: var(--title-font);
+  font-size: 100px;
+}
+
+/* Intro and outro image styling */
+.introImg,
+.outroImg {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 40px auto;
+}
+
+/* Optional: styling for top image box if needed */
+.topImg {
+  width: 300px;
+  height: 300px;
+  background-color: var(--top-image-color);
+  animation: pulse-box 2s infinite ease-in-out;
+  margin: 0 auto;
+}
