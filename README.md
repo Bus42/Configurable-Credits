@@ -50,3 +50,48 @@ export const environment = {
   testing: false // Set to true to simulate credits data without going live
 };
 ```
+
+### 4 👉 Launch in a Browser or OBS
+
+#### 🌐 In a browser
+
+Simply open `index.html` in your browser. You’ll see the credits scroll based on the latest Twitch events.
+
+#### 🎥 In OBS
+
+1. Open OBS
+2. Add a Browser Source
+3. Point it to your local index.html file, or host the file on a local server and use the URL
+4. Set width/height to match your scene layout (e.g. 1920x1080)
+
+This makes a perfect outro scene when wrapping up your stream!
+
+## 🛠️ Customization
+
+You can customize styles via:
+
+- `src/style/index.css` – change colors, fonts, scroll speed, animations
+- `keyframes.css` – tweak pulse or scroll effects
+- Modify the JSX in the `<script type="text/babel">` block in `index.html` to change layout
+
+## 🔧 Technical Overview
+
+- Built with React 18 (CDN) via Babel in-browser
+- Uses pure HTML + JavaScript — no npm, no bundler, no build step
+- Fully dynamic: data structure is determined at runtime from WebSocket response
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+- Add support for new Twitch event types
+- Improve styling and animations
+- Refactor to support React + Vite for modern deployment
+
+## 💬 Support
+
+If you need help or have questions, feel free to open an Issue or DM me on Twitch or Discord.
+
+## 📄 License
+
+MIT License. Free to use, fork, and modify!
