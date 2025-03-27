@@ -73,6 +73,7 @@ You can customize styles via:
 - `src/style/index.css` – change colors, fonts, scroll speed, animations
 - `keyframes.css` – tweak pulse or scroll effects
 - Modify the JSX in the `<script type="text/babel">` block in `index.html` to change layout
+- Modify configuration in `src/js/config.js` to set the WebSocket URL and port as well as apply custom styles
 
 ## 🔧 Technical Overview
 
