@@ -3,6 +3,7 @@
 
 :root {
   --title-font: 'Rubik Distressed', sans-serif;
+  --heading-font: 'Orbitron', sans-serif;
   --job-font: 'Bungee Tint', sans-serif;
   --text-font: 'Orbitron', sans-serif;
   --wrapper-color: #0ff;
@@ -87,4 +88,10 @@ body {
   background-color: var(--top-image-color);
   animation: pulse-box 2s infinite ease-in-out;
   margin: 0 auto;
+}
+
+.headingText {
+  font-family: var(--heading-font);
+  margin-top: 40px;
+  font-size: 72px;
 }
