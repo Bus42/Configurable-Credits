@@ -45,6 +45,8 @@ Or just download the ZIP and extract it.
 - Enable and configure the WebSocket Server
   - Set the WebSocket port and ensure it's accessible locally (e.g., ws://localhost:8080)
   - Allow the app to connect and retrieve credits data
+  - At the top of Streamer.bot you Click on "Import", Locate the file `Credits - Simple Scrolling.sb`.
+  - Drag and Drop it with your mouse it into the Streamer.bot's Import Dialog
 
 ### 3 👉 Edit the Configuration
 
