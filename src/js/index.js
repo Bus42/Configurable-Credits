@@ -15,21 +15,9 @@
  */
 
 /**
- * WebSocket connection settings
- * @type {SocketConfig}
- */
-const socketConfig = {
-	url: 'ws://127.0.0.1',
-	port: 8080
-};
-
-/**
  * Environment flags (e.g. testing mode)
  * @type {EnvironmentConfig}
  */
-const environmentConfig = {
-	testing: true
-};
 
 /**
  * Retrieve a value from an object, ignoring key casing.
