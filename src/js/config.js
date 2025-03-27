@@ -64,3 +64,11 @@ const textConfig = {
     introText: 'Thanks for watching!',
     outroText: 'So long, and thanks for all the fish!'
 };
+
+const creditsVisibility = {
+    events: { show: true },
+    hypeTrain: { show: true },
+    users: { show: true },
+    groups: { show: false },
+    top: { show: true }
+};
