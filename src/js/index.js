@@ -62,8 +62,8 @@ function useCreditsData() {
 
 			// Intro Section
 			credits.push(
-				<img key="introImg" className="introImg" src="https://res.cloudinary.com/studio42-web-development/image/upload/v1739058435/Gaming/kav9svkuerviqk7rmloi.png" />,
-				<div key="introText" className="introText">Thanks for watching!</div>
+				<img key="introImg" className="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
+				<div key="introText" className="introText">{textConfig.introText}</div>
 			);
 
 			// Dynamic Rendering
@@ -88,8 +88,8 @@ function useCreditsData() {
 
 			// Outro Section
 			credits.push(
-				<div key="outroText" className="outroText">So long, and thanks for all the fish!</div>,
-				<img key="outroImg" className="outroImg" src="https://res.cloudinary.com/studio42-web-development/image/upload/v1671603099/Gaming/daer0mimlj7u0ep5ftoe.jpg" />
+				<div key="outroText" className="outroText">{textConfig.outroText}</div>,
+				<img key="outroImg" className="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
 			);
 
 			setEntries(credits);
