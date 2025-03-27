@@ -63,32 +63,36 @@ function useCreditsData() {
 			// Intro Section
 			credits.push(
 				<img key="introImg" className="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
-				<div key="introText" className="introText">{textConfig.introText}</div>
+				<h1 key="introText" className="introText">{textConfig.introText}</h1>
 			);
 
 			// Dynamic Rendering
 			Object.entries(response).forEach(([section, sectionData]) => {
 				if (typeof sectionData !== 'object') return;
+				const headingKey = section;
+				if (creditsVisibility[section].show) {
+					credits.push(<h2 className="headingText" key={headingKey} >{section}</h2>);
 
-				Object.entries(sectionData).forEach(([key, values]) => {
-					if (!Array.isArray(values) || values.length === 0) return;
+					Object.entries(sectionData).forEach(([key, values]) => {
+						if (!Array.isArray(values) || values.length === 0) return;
 
-					const titleKey = `${section}-${key}`;
-					credits.push(<div className="job" key={titleKey}>{`${section} - ${key}`}</div>);
+						const titleKey = `${section}-${key}`;
+						credits.push(<h3 className="job" key={titleKey}>{key}</h3>);
 
-					values.forEach((entry) => {
-						const uniqueKey = `${titleKey}-${entry}`;
-						if (!seen.has(uniqueKey)) {
-							credits.push(<div className="name" key={uniqueKey}>{entry}</div>);
-							seen.add(uniqueKey);
-						}
+						values.forEach((entry) => {
+							const uniqueKey = `${titleKey}-${entry}`;
+							if (!seen.has(uniqueKey)) {
+								credits.push(<p className="name" key={uniqueKey}>{entry}</p>);
+								seen.add(uniqueKey);
+							}
+						});
 					});
-				});
+				}
 			});
 
 			// Outro Section
 			credits.push(
-				<div key="outroText" className="outroText">{textConfig.outroText}</div>,
+				<h2 key="outroText" className="outroText">{textConfig.outroText}</h2>,
 				<img key="outroImg" className="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
 			);
 
