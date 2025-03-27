@@ -33,7 +33,7 @@ By default, the font sizes are optimized for 1080p full-screen. If you wish to d
 ### 1 👉 **Clone or Download the Repo**
 
 ```bash
-git clone https://github.com/yourusername/twitch-credits-scroller.git
+git clone https://github.com/Bus42/twitch-credits-scroller.git
 cd twitch-credits-scroller
 ```
 
