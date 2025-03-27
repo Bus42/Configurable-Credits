@@ -1,5 +1,7 @@
 # 🎬 Twitch Stream Credits Scroller
 
+![scrolling credits demo](https://res.cloudinary.com/studio42-web-development/image/upload/v1743114856/Gaming/htvkza20gzhyennrmsgw.gif)
+
 This project is a **React-powered animated credits screen** for Twitch streamers to showcase viewers, supporters, and contributors at the end of a stream — like the end credits of a movie!
 
 It fetches live data from **Streamer.bot** via WebSocket and renders a **scrolling neon-themed credits display**, perfect for OBS integration as a browser source.
