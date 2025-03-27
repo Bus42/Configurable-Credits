@@ -39,8 +39,8 @@ const imageConfig = {
         src: 'https://res.cloudinary.com/studio42-web-development/image/upload/v1739058435/Gaming/kav9svkuerviqk7rmloi.png',
         alt: 'Satan\'s Gerbils',
         style: {
-            width: 800,
-            height: 600
+            width: 288,
+            height: 288,
         },
         show: true
     },
@@ -48,8 +48,8 @@ const imageConfig = {
         src: 'https://res.cloudinary.com/studio42-web-development/image/upload/v1671603099/Gaming/daer0mimlj7u0ep5ftoe.jpg',
         alt: 'So long, and thanks for all the fish!',
         style: {
-            width: 800,
-            height: 600,
+            width: 350,
+            height: 197,
         },
         show: true
     }
