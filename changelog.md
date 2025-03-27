@@ -27,3 +27,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Designed for lightweight deployment and local OBS usage
 
 ---
+
+## [0.0.2] - 2025-03-28
+
+### Added
+
+- Added a config.js file for easier setup
+  - CSS styles can now be defined in the config.js file
+  - Image source and size can be set in the config.js file
+- Updated JSDoc comments for better clarity and type inference in supported editors
