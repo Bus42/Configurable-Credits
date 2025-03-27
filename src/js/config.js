@@ -64,3 +64,26 @@ const textConfig = {
     introText: 'Thanks for watching!',
     outroText: 'So long, and thanks for all the fish!'
 };
+
+/**
+ * * @typedef {Object} CreditsVisibility
+ * @property {object} creditsVisibility - Configuration for individual sections of the Twitch credits
+ * @property {object} creditsVisibility.events - Events visibility configuration object
+ * @property {bool} creditsVisibility.events.show - Toggle visibility of the Events section
+ * @property {object} creditsVisibility.hypeTrain - Hypetrain visibility configuration object
+ * @property {bool} creditsVisibility.hypeTrain.show - Toggle visibility of the hypeTrain section
+ * @property {object} creditsVisibility.users - Users visibility configuration object
+ * @property {bool} creditsVisibility.users.show - Toggle visibility of the Users section
+ * @property {object} creditsVisibility.groups - Groups visibility configuration object
+ * @property {bool} creditsVisibility.groups.show - Toggle visibility of the Groups section
+ * @property {object} creditsVisibility.top - Top visibility configuration object
+ * @property {bool} creditsVisibility.top.show - Toggle visibility of the Top section
+ *  
+ */
+const creditsVisibility = {
+    events: { show: true },
+    hypeTrain: { show: true },
+    users: { show: true },
+    groups: { show: false },
+    top: { show: true }
+};

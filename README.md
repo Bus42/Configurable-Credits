@@ -4,6 +4,8 @@ This project is a **React-powered animated credits screen** for Twitch streamers
 
 It fetches live data from **Streamer.bot** via WebSocket and renders a **scrolling neon-themed credits display**, perfect for OBS integration as a browser source.
 
+By default, the font sizes are optimized for 1080p full-screen. If you wish to display it in a different size window, you should only need to change the font sizes in `index.css`.
+
 ---
 
 ## 🚀 Features
@@ -13,6 +15,12 @@ It fetches live data from **Streamer.bot** via WebSocket and renders a **scrolli
 - 🎥 Designed for use in OBS as a browser source
 - 🎨 Neon-styled, customizable CSS animations
 - ⚙️ Lightweight, no Node.js required — pure HTML + CDN React
+
+## Planned Features
+
+- Custom properties for font sizes in index.css
+- Consolidated style configuration
+- UI for configuration without a text editor
 
 ---
 

@@ -28,11 +28,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [0.0.2] - 2025-03-28
+## [1.0.1] - 2025-03-28
 
 ### Added
 
-- Added a config.js file for easier setup
-  - CSS styles can now be defined in the config.js file
-  - Image source and size can be set in the config.js file
+- Added a `config.js` file for easier setup
+  - CSS styles can now be defined in the `config.js` file
+  - Image source and size can be set in the `config.js` file
 - Updated JSDoc comments for better clarity and type inference in supported editors
+
+## [1.0.2] - 2025-03-28
+
+### Added
+
+- Added a visibility toggle for individual credits sections in `config.js` with **JSDoc** comments
+- The overlay now shows each section name in a heading instead of hyphenating all of the section entry names
+- Added a custom property in `index.css` for the heading font
+- Adjusted whitespacing
