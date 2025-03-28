@@ -48,7 +48,7 @@ const textConfig = {
 ### 1 👉 **Clone or Download the Repo**
 
 ```bash
-git clone https://github.com/yourusername/twitch-credits-scroller.git
+git clone https://github.com/Bus42/twitch-credits-scroller.git
 cd twitch-credits-scroller
 ```
 
@@ -60,6 +60,8 @@ Or just download the ZIP and extract it.
 - Enable and configure the WebSocket Server
   - Set the WebSocket port and ensure it's accessible locally (e.g., ws://localhost:8080)
   - Allow the app to connect and retrieve credits data
+  - At the top of Streamer.bot you Click on "Import", Locate the file `Credits - Simple Scrolling.sb`.
+  - Drag and Drop it with your mouse into the Streamer.bot's Import Dialog
 
 ### 3 👉 Edit the Configuration
 
