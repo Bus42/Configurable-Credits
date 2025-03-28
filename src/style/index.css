@@ -9,6 +9,7 @@
   --wrapper-color: #0ff;
   --role-color: #b82a76;
   --name-color: #bf00ff;
+  --title-color: #ebebeb;
 }
 
 * {
@@ -29,68 +30,10 @@ body {
 }
 
 /* Outer container for scroll animation */
-.wrapper,
 #credits {
   position: absolute;
   top: 100%;
   width: 100%;
-  font: 600 60px/1 var(--text-font), sans-serif;
   text-align: center;
   text-transform: uppercase;
-  color: var(--wrapper-color);
-}
-
-/* Section titles */
-.role {
-  font-family: var(--role-font);
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 72px;
-  font-weight: bold;
-  color: var(--role-color);
-  animation: glowing-neon 1.7s infinite ease-in-out;
-}
-
-/* Entry names */
-.name {
-  margin-bottom: 20px;
-  font-size: 45px;
-  color: var(--name-color);
-  animation: glowing-neon 1.8s infinite ease-in-out;
-}
-
-#introText, #outroText {
-  font-family: var(--title-font);
-  font-size: 80px;
-  animation: headShake 2s infinite ease-in-out;
-}
-
-/* Intro and outro image styling */
-.introImg,
-.outroImg {
-  width: 100%;
-  max-width: 400px;
-  display: block;
-  margin: 40px auto;
-}
-
-/* Optional: styling for top image box if needed */
-.topImg {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-}
-
-.headingText {
-  font-family: var(--heading-font);
-  margin-top: 60px;
-  font-size: 72px;
-  animation: glowing-neon 1.9s infinite ease-in-out;
-}
-
-.heading-icon {
-  margin-top: 60px;
-  font-size: 72px;
-  margin-right: 40px;
-  animation: wobble 1.6s infinite ease-in-out;
 }

@@ -62,8 +62,8 @@ function useCreditsData() {
 
 			// Intro Section
 			credits.push(
-				<img key="introImg" className="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
-				<h1 key="introText" id="introText">{textConfig.introText}</h1>
+				<img key="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
+				<h1 key="introText" style={textConfig.titleStyle}>{textConfig.introText}</h1>
 			);
 
 			// Dynamic Rendering
@@ -77,18 +77,18 @@ function useCreditsData() {
 						wrap: 'no-wrap',
 						justifyContent: 'center',
 						alignItems: 'center'
-					}} ><i className={`heading-icon ${headingsConfig[section].icon}`} >{" "}</i>{" "}<h2 className="headingText" key={headingKey} >{section}</h2></div>);
+					}} ><i className={headingsConfig[section].icon} style={textConfig.headingIconStyle} >{" "}</i>{" "}<h2 style={textConfig.headingStyle} key={headingKey} >{section}</h2></div>);
 
 					Object.entries(sectionData).forEach(([key, values]) => {
 						if (!Array.isArray(values) || values.length === 0) return;
 
 						const titleKey = `${section}-${key}`;
-						credits.push(<h3 className="role" key={titleKey}>{key}</h3>);
+						credits.push(<h3 style={textConfig.roleStyle} key={titleKey}>{key}</h3>);
 
 						values.forEach((entry) => {
 							const uniqueKey = `${titleKey}-${entry}`;
 							if (!seen.has(uniqueKey)) {
-								credits.push(<p className="name" key={uniqueKey}>{entry}</p>);
+								credits.push(<p style={textConfig.nameStyle} key={uniqueKey}>{entry}</p>);
 								seen.add(uniqueKey);
 							}
 						});
@@ -98,8 +98,8 @@ function useCreditsData() {
 
 			// Outro Section
 			credits.push(
-				<h2 key="outroText" id="outroText">{textConfig.outroText}</h2>,
-				<img key="outroImg" className="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
+				<h2 key="outroText" style={textConfig.endTitleStyle} >{textConfig.outroText}</h2>,
+				<img key="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
 			);
 
 			setEntries(credits);
@@ -134,7 +134,7 @@ function CreditsDisplay() {
 	const { entries, containerRef } = useCreditsData();
 
 	return (
-		<div id="credits" ref={containerRef} style={{ position: 'absolute' }}>
+		<div id="credits" style={textConfig.containterStyle} ref={containerRef}>
 			{entries}
 		</div>
 	);
