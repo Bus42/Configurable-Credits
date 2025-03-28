@@ -45,3 +45,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The overlay now shows each section name in a heading instead of hyphenating all of the section entry names
 - Added a custom property in `index.css` for the heading font
 - Adjusted whitespacing
+
+## [1.0.3] - 2025-03-28
+
+### Added
+
+- Updates to README pertaining to Streamer.bot integration
+- New fonts from [Fontawesome](https://fontawesome.com)
+- Removes glow from credits title
+- Offsets glow animations slightly for better effect
