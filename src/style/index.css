@@ -4,12 +4,11 @@
 :root {
   --title-font: 'Rubik Distressed', sans-serif;
   --heading-font: 'Orbitron', sans-serif;
-  --job-font: 'Bungee Tint', sans-serif;
+  --role-font: 'Bungee Tint', sans-serif;
   --text-font: 'Orbitron', sans-serif;
   --wrapper-color: #0ff;
-  --job-color: #ff1493;
+  --role-color: #b82a76;
   --name-color: #bf00ff;
-  --top-image-color: #ff6700;
 }
 
 * {
@@ -42,13 +41,13 @@ body {
 }
 
 /* Section titles */
-.job {
-  font-family: var(--job-font);
+.role {
+  font-family: var(--role-font);
   margin-top: 40px;
   margin-bottom: 40px;
   font-size: 72px;
   font-weight: bold;
-  color: var(--job-color);
+  color: var(--role-color);
   animation: glowing-neon 1.7s infinite ease-in-out;
 }
 
@@ -79,7 +78,6 @@ body {
 .topImg {
   width: 300px;
   height: 300px;
-  background-color: var(--top-image-color);
   margin: 0 auto;
 }
 

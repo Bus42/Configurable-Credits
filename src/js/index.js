@@ -83,7 +83,7 @@ function useCreditsData() {
 						if (!Array.isArray(values) || values.length === 0) return;
 
 						const titleKey = `${section}-${key}`;
-						credits.push(<h3 className="job" key={titleKey}>{key}</h3>);
+						credits.push(<h3 className="role" key={titleKey}>{key}</h3>);
 
 						values.forEach((entry) => {
 							const uniqueKey = `${titleKey}-${entry}`;
