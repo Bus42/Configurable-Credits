@@ -66,6 +66,7 @@ const imageConfig = {
             width: 288,
             height: 288,
             margin: '40px auto',
+            borderRadius: '25%'
         },
         show: false
     },
@@ -76,6 +77,7 @@ const imageConfig = {
             width: 350,
             height: 197,
             margin: '40px auto',
+            borderRadius: '20px'
         },
         show: true
     }
