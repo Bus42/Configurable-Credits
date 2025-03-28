@@ -66,7 +66,7 @@ const imageConfig = {
             width: 288,
             height: 288,
             margin: '40px auto',
-            borderRadius: '25%'
+            borderRadius: '50%'
         },
         show: false
     },
