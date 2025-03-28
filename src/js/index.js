@@ -71,7 +71,13 @@ function useCreditsData() {
 				if (typeof sectionData !== 'object') return;
 				const headingKey = section;
 				if (headingsConfig[section].show) {
-					credits.push(<h2 className="headingText" key={headingKey} ><span className={headingsConfig[section].icon} ></span>{section}</h2>);
+					credits.push(<div style={{
+						display: 'flex',
+						flexDirection: 'row',
+						wrap: 'no-wrap',
+						justifyContent: 'center',
+						alignItems: 'center'
+					}} ><i className={`heading-icon ${headingsConfig[section].icon}`} >{" "}</i>{" "}<h2 className="headingText" key={headingKey} >{section}</h2></div>);
 
 					Object.entries(sectionData).forEach(([key, values]) => {
 						if (!Array.isArray(values) || values.length === 0) return;
