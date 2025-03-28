@@ -28,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.1] - 2025-03-28
+## [1.0.1] - 2025-03-27
 
 ### Added
 
@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Image source and size can be set in the `config.js` file
 - Updated JSDoc comments for better clarity and type inference in supported editors
 
-## [1.0.2] - 2025-03-28
+## [1.0.2] - 2025-03-27
 
 ### Added
 
@@ -46,13 +46,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added a custom property in `index.css` for the heading font
 - Adjusted whitespacing
 
-## [1.0.3] - 2025-03-28
+## [1.0.3] - 2025-03-27
 
 ### Added
 
 - Updates to README pertaining to Streamer.bot integration
 
-## [1.0.4] - 2025-03-29
+## [1.0.4] - 2025-03-27
 
 ### Added
 
@@ -60,3 +60,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - New fonts from [Fontawesome](https://fontawesome.com) for section headings
 - Removes glow from credits title
 - Offsets glow animations slightly for better effect
+
+## [1.1.0] - 2025-03-28
+
+### Changes
+
+- All modifiable style declarations have been moved to `config.js`. Modifications of any values in `index.css` may break the animation.
+- Some classes were renamed for better semantics
+- README updated to reflect changes
