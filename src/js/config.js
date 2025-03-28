@@ -105,6 +105,7 @@ const textConfig = {
     titleStyle: {
         fontFamily: 'var(--title-font)',
         fontSize: 80,
+        color: 'var(--title-color)',
         animation: 'headShake 2s infinite ease-in-out',
     },
     headingStyle: {
@@ -142,6 +143,7 @@ const textConfig = {
         fontFamily: 'var(--title-font)',
         fontSize: 72,
         marginTop: 80,
+        color: 'var(--title-color)',
         animation: 'pulse 2s infinite ease-in-out',
     },
 };
