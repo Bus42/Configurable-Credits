@@ -63,9 +63,11 @@ const imageConfig = {
         src: 'https://res.cloudinary.com/studio42-web-development/image/upload/v1739058435/Gaming/kav9svkuerviqk7rmloi.png',
         alt: "Satan's Gerbils",
         style: {
-            width: 288,
-            height: 288,
-            margin: '40px auto',
+            display: 'block',
+            width: 'clamp(280, 25%, 400)',
+            margin: 'auto',
+            marginBottom: 60,
+            marginTop: 0,
             borderRadius: '50%'
         },
         show: false
@@ -74,9 +76,10 @@ const imageConfig = {
         src: 'https://res.cloudinary.com/studio42-web-development/image/upload/v1671603099/Gaming/daer0mimlj7u0ep5ftoe.jpg',
         alt: 'So long, and thanks for all the fish!',
         style: {
-            width: 350,
-            height: 197,
-            margin: '40px auto',
+            display: 'block',
+            width: 'clamp(280, 40%, 600)',
+            height: 'auto',
+            margin: '60px auto',
             borderRadius: '20px'
         },
         show: true
@@ -94,8 +97,53 @@ const imageConfig = {
  * @type {TextConfig}
  */
 const textConfig = {
+    containerStyle: {
+        font: '600 60px / 1 var(--wrapper-color) , sans-serif',
+    },
     introText: 'Thanks for watching!',
-    outroText: 'So long, and thanks for all the fish!'
+    outroText: 'So long, and thanks for all the fish!',
+    titleStyle: {
+        fontFamily: 'var(--title-font)',
+        fontSize: 80,
+        animation: 'headShake 2s infinite ease-in-out',
+    },
+    headingStyle: {
+        fontFamily: 'var(--heading-font)',
+        marginTop: 60,
+        fontSize: 72,
+        animation: 'glowing-neon 1.9s infinite ease-in-out',
+        color: 'var(--wrapper-color)'
+    },
+    headingIconStyle: {
+        // Top margin and font size should match the heading style
+        marginTop: 60,
+        fontSize: 72,
+        marginRight: 40,
+        animation: 'wobble 1.6s infinite ease-in-out',
+        color: 'var(--wrapper-color)'
+    },
+    roleStyle: {
+        fontFamily: 'var(--role-font)',
+        marginTop: 40,
+        marginBottom: 40,
+        fontSize: 72,
+        fontWeight: 'bold',
+        color: 'var(--role-color)',
+        animation: 'glowing-neon 1.7s infinite ease-in-out',
+    },
+    nameStyle: {
+        marginBottom: 20,
+        fontSize: 45,
+        color: 'var(--name-color)',
+        fontFamily: 'var(--text-font)',
+        animation: 'glowing-neon 1.8s infinite ease-in-out',
+    },
+    endTitleStyle: {
+        fontFamily: 'var(--title-font)',
+        fontSize: 72,
+        marginTop: 80,
+        animation: 'pulse 2s infinite ease-in-out',
+    },
 };
 
 /**
@@ -119,7 +167,7 @@ const textConfig = {
  */
 const headingsConfig = {
     events: {
-        show: true,
+        show: false,
         icon: "fa-solid fa-cake-candles",
     },
     hypeTrain: {
@@ -127,7 +175,7 @@ const headingsConfig = {
         icon: 'fa-solid fa-train'
     },
     users: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-users'
     },
     groups: {
