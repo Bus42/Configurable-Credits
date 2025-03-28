@@ -39,13 +39,6 @@ body {
   text-align: center;
   text-transform: uppercase;
   color: var(--wrapper-color);
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Movie title (optional) */
-.movie {
-  margin-bottom: 25px;
-  font-size: 50px;
 }
 
 /* Section titles */
@@ -56,7 +49,7 @@ body {
   font-size: 72px;
   font-weight: bold;
   color: var(--job-color);
-  animation: pulse 2s infinite ease-in-out;
+  animation: pulse 1.7s infinite ease-in-out;
 }
 
 /* Entry names */
@@ -64,12 +57,12 @@ body {
   margin-bottom: 20px;
   font-size: 45px;
   color: var(--name-color);
-  animation: pulse 2s infinite ease-in-out;
+  animation: pulse 1.8s infinite ease-in-out;
 }
 
-.introText {
+.introText, .outroText {
   font-family: var(--title-font);
-  font-size: 100px;
+  font-size: 80px;
 }
 
 /* Intro and outro image styling */
@@ -86,7 +79,6 @@ body {
   width: 300px;
   height: 300px;
   background-color: var(--top-image-color);
-  animation: pulse-box 2s infinite ease-in-out;
   margin: 0 auto;
 }
 
@@ -94,4 +86,11 @@ body {
   font-family: var(--heading-font);
   margin-top: 60px;
   font-size: 72px;
+  animation: pulse 1.9s infinite ease-in-out;
+}
+
+.heading-icon {
+  margin-top: 60px;
+  font-size: 72px;
+  margin-right: 40px;
 }
