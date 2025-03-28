@@ -60,9 +60,9 @@ body {
   animation: pulse 1.8s infinite ease-in-out;
 }
 
-.introText {
+.introText, .outroText {
   font-family: var(--title-font);
-  font-size: 90px;
+  font-size: 80px;
 }
 
 /* Intro and outro image styling */
@@ -87,4 +87,10 @@ body {
   margin-top: 60px;
   font-size: 72px;
   animation: pulse 1.9s infinite ease-in-out;
+}
+
+.heading-icon {
+  margin-top: 60px;
+  font-size: 72px;
+  margin-right: 40px;
 }
