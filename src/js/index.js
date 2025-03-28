@@ -63,7 +63,7 @@ function useCreditsData() {
 			// Intro Section
 			credits.push(
 				<img key="introImg" className="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
-				<h1 key="introText" className="introText">{textConfig.introText}</h1>
+				<h1 key="introText" id="introText">{textConfig.introText}</h1>
 			);
 
 			// Dynamic Rendering
@@ -98,7 +98,7 @@ function useCreditsData() {
 
 			// Outro Section
 			credits.push(
-				<h2 key="outroText" className="outroText">{textConfig.outroText}</h2>,
+				<h2 key="outroText" id="outroText">{textConfig.outroText}</h2>,
 				<img key="outroImg" className="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
 			);
 
