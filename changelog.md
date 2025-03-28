@@ -51,6 +51,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Updates to README pertaining to Streamer.bot integration
-- New fonts from [Fontawesome](https://fontawesome.com)
+
+## [1.0.4] - 2025-03-29
+
+### Added
+
+- Decreased render time!
+- New fonts from [Fontawesome](https://fontawesome.com) for section headings
 - Removes glow from credits title
 - Offsets glow animations slightly for better effect
