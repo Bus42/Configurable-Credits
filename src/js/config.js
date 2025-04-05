@@ -173,11 +173,11 @@ const headingsConfig = {
         icon: "fa-solid fa-cake-candles",
     },
     hypeTrain: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-train'
     },
     users: {
-        show: false,
+        show: true,
         icon: 'fa-solid fa-users'
     },
     groups: {
