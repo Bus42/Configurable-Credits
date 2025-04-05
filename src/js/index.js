@@ -37,6 +37,7 @@ function getParameterCaseInsensitive(obj, key) {
 function useCreditsData() {
 	const [entries, setEntries] = React.useState([]);
 	const containerRef = React.useRef(null);
+	const [complete, setComplete] = React.useState(false);
 
 	React.useEffect(() => {
 		const socket = new WebSocket(`${socketConfig.url}:${socketConfig.port}`);
@@ -83,6 +84,7 @@ function useCreditsData() {
 						if (!Array.isArray(values) || values.length === 0) return;
 
 						const titleKey = `${section}-${key}`;
+						// TODO: Wrap the following in an if/else to check headingsConfig[section][key].show
 						credits.push(<h3 style={textConfig.roleStyle} key={titleKey}>{key}</h3>);
 
 						values.forEach((entry) => {
@@ -117,9 +119,17 @@ function useCreditsData() {
 					{ top: `${heightPercent}%` }
 				], {
 					duration,
-					iterations: 2
+					iterations: 1
 				});
+
+				// set complete true when the animation is done
+				setTimeout(() => {
+					setComplete(true);
+					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
+
+				}, duration + 1000);
 			}, 100);
+
 		};
 	}, []);
 
@@ -134,11 +144,16 @@ function CreditsDisplay() {
 	const { entries, containerRef } = useCreditsData();
 
 	return (
-		<div id="credits" style={textConfig.containterStyle} ref={containerRef}>
+		<div id="credits" style={textConfig.containerStyle} ref={containerRef}>
 			{entries}
 		</div>
 	);
 }
+
+// Get ID of the last element in the DOM
+const lastElementId = document.querySelectorAll("[id]").length - 1;
+
+//
 
 // Mount the component into the DOM
 const container = document.getElementById("root");
