@@ -34,10 +34,32 @@ function getParameterCaseInsensitive(obj, key) {
  * Custom React hook to handle WebSocket connection and generate credit entries
  * @returns {{ entries: JSX.Element[], containerRef: React.RefObject<HTMLDivElement> }}
  */
+
+/**
+ * Custom React hook to retrieve and animate credits data via a WebSocket.
+ *
+ * This hook establishes a WebSocket connection using external configuration values
+ * to request credits data. Upon receiving the data, it processes the response to generate
+ * an array of JSX elements representing different sections of the credits (intro, dynamic
+ * sections, and outro). It then updates the component state with these entries and triggers
+ * a scrolling animation on the credits container. If an end action is enabled via configuration,
+ * an additional WebSocket message is sent after the animation completes.
+ *
+ * External dependencies:
+ * - socketConfig: Object containing WebSocket URL, port, and optional endAction details.
+ * - environmentConfig: Object with a boolean `testing` flag for selecting test or live data.
+ * - imageConfig: Object containing image configurations for intro and outro images.
+ * - textConfig: Object containing style and text configurations.
+ * - headingsConfig: Object containing visibility and icon settings for each credits section.
+ *
+ * @returns {{ entries: JSX.Element[], containerRef: React.RefObject<HTMLDivElement> }}
+ *   An object containing:
+ *   - `entries`: An array of JSX elements representing the dynamically generated credit entries.
+ *   - `containerRef`: A React ref object pointing to the container div used for animating the credits.
+ */
 function useCreditsData() {
 	const [entries, setEntries] = React.useState([]);
 	const containerRef = React.useRef(null);
-	const [complete, setComplete] = React.useState(false);
 
 	React.useEffect(() => {
 		const socket = new WebSocket(`${socketConfig.url}:${socketConfig.port}`);
@@ -48,12 +70,7 @@ function useCreditsData() {
 				request: environmentConfig.testing ? 'TestCredits' : 'GetCredits'
 			}));
 		};
-
-		/**
-		 * @param {MessageEvent} event
-		 */
 		socket.onmessage = (event) => {
-			/** @type {CreditsResponse} */
 			const response = JSON.parse(event.data);
 			if (response.id !== 'credits') return;
 
@@ -67,7 +84,6 @@ function useCreditsData() {
 				<h1 key="introText" style={textConfig.titleStyle}>{textConfig.introText}</h1>
 			);
 
-			// Dynamic Rendering
 			Object.entries(response).forEach(([section, sectionData]) => {
 				if (typeof sectionData !== 'object') return;
 				const headingKey = section;
@@ -122,12 +138,43 @@ function useCreditsData() {
 					iterations: 1
 				});
 
-				// set complete true when the animation is done
-				setTimeout(() => {
-					setComplete(true);
-					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-
-				}, duration + 1000);
+				if (socketConfig.endAction.enabled) {
+					// Trigger end action after animation completes
+					setTimeout(() => {
+						console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
+						// TODO: Send message to Streamer.bot server to trigger the action configured in the config.js file
+						const socket = new WebSocket(`${socketConfig.url}:${socketConfig.port}`);
+						socket.addEventListener('open', () => {
+							socket.send(JSON.stringify({
+								request: "DoAction",
+								action: {
+									id: socketConfig.endAction.id,
+									name: socketConfig.endAction.name,
+								},
+								args: {
+									parameter1: socketConfig.endAction.data.parameter1,
+									parameter2: socketConfig.endAction.data.parameter2,
+								},
+								id: "endAction"
+							}));
+						});
+						socket.addEventListener("message", (event) => {
+							console.table("Message from server: ", event.data);
+						});
+						socket.addEventListener("close", () => {
+							console.log("Socket closed");
+						});
+						socket.addEventListener("error", (event) => {
+							console.error("Socket error: ", event);
+						});
+					}, duration);
+					socket.close();
+				} else {
+					// Log completion if no end action is configured.
+					setTimeout(() => {
+						console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
+					}, duration);
+				}
 			}, 100);
 
 		};
@@ -149,11 +196,6 @@ function CreditsDisplay() {
 		</div>
 	);
 }
-
-// Get ID of the last element in the DOM
-const lastElementId = document.querySelectorAll("[id]").length - 1;
-
-//
 
 // Mount the component into the DOM
 const container = document.getElementById("root");
