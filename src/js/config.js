@@ -21,7 +21,16 @@
  */
 const socketConfig = {
     url: 'ws://127.0.0.1',
-    port: 8080
+    port: 8080,
+    endAction: {
+        enabled: true,
+        name: 'Twitch Follow Replay',
+        id: '809ea842-b561-48b4-ba6f-6ce873e0ecd6',
+        data: {
+            parameter1: '',
+            parameter2: ''
+        }
+    },
 };
 
 /**
@@ -177,7 +186,7 @@ const headingsConfig = {
         icon: 'fa-solid fa-train'
     },
     users: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-users'
     },
     groups: {
@@ -185,7 +194,7 @@ const headingsConfig = {
         icon: 'fa-solid fa-people-group'
     },
     top: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-award'
     }
 };
