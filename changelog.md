@@ -6,9 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.0] - 2025-03-27
+## Usage
 
-### 🎉 Added
+When adding a new version, please follow the format below:
+
+```markdown
+### [Version Number] - YYYY-MM-DD
+
+Description of changes made in this version.
+
+- Use bullet points for each change
+```
+
+## Changelog
+
+### [1.0.0] - 2025-03-27
 
 - Initial release of **Twitch Stream Credits Scroller**
 - React-powered animated credits screen using CDN + Babel
@@ -20,51 +32,58 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Simple config system for local/production modes
 - Fallback for test mode without going live
 
-### 🛠️ Infrastructure
-
-- React via CDN (no build or Node.js required)
-- Babel for JSX support inline in HTML
-- Designed for lightweight deployment and local OBS usage
-
----
-
-## [1.0.1] - 2025-03-27
-
-### Added
+### [1.0.1] - 2025-03-27
 
 - Added a `config.js` file for easier setup
   - CSS styles can now be defined in the `config.js` file
   - Image source and size can be set in the `config.js` file
 - Updated JSDoc comments for better clarity and type inference in supported editors
 
-## [1.0.2] - 2025-03-27
-
-### Added
+### [1.0.2] - 2025-03-27
 
 - Added a visibility toggle for individual credits sections in `config.js` with **JSDoc** comments
 - The overlay now shows each section name in a heading instead of hyphenating all of the section entry names
 - Added a custom property in `index.css` for the heading font
 - Adjusted whitespacing
 
-## [1.0.3] - 2025-03-27
-
-### Added
+### [1.0.3] - 2025-03-27
 
 - Updates to README pertaining to Streamer.bot integration
 
-## [1.0.4] - 2025-03-27
-
-### Added
+### [1.0.4] - 2025-03-27
 
 - Decreased render time!
 - New fonts from [Fontawesome](https://fontawesome.com) for section headings
 - Removes glow from credits title
 - Offsets glow animations slightly for better effect
 
-## [1.1.0] - 2025-03-28
-
-### Changes
+### [2.0.0] - 2025-03-28
 
 - All modifiable style declarations have been moved to `config.js`. Modifications of any values in `index.css` may break the animation.
 - Some classes were renamed for better semantics
 - README updated to reflect changes
+
+### [2.1.0] - 2025-03-28
+
+- Added support for triggering a Streamer.bot action when the credits animation ends
+  - You can use any action you have defined in Streamer.bot
+  - This can be enabled in the `config.js` file
+  - The `name` field is for UI purposes only (not yet implemented) and does not need to match the action name in Streamer.bot
+
+```markdown
+const socketConfig = {
+    url: 'ws://127.0.0.1',
+    port: 8080,
+    endAction: {
+        enabled: true,
+        name: 'Twitch Follow Replay',
+        id: '809ea842-b561-48b4-ba6f-6ce873e0ecd6',
+        data: {
+            parameter1: '',
+            parameter2: ''
+        }
+    },
+};
+```
+
+- Separated the `index.js` file into multiple files for better organization

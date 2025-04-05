@@ -13,6 +13,13 @@
  * @typedef {Object} SocketConfig
  * @property {string} url - The WebSocket connection URL.
  * @property {number} port - The port number for the WebSocket connection.
+ * @property {Object} [endAction] - Optional configuration for triggering an action at the end of the credits.
+ * @property {boolean} [endAction.enabled] - Flag indicating if the end action is enabled.
+ * @property {string} [endAction.name] - The name of the end action.
+ * @property {string} [endAction.id] - The identifier for the end action.
+ * @property {Object} [endAction.data] - Data for the end action.
+ * @property {string} [endAction.data.parameter1] - First parameter for the end action.
+ * @property {string} [endAction.data.parameter2] - Second parameter for the end action.
  */
 
 /**
@@ -21,7 +28,16 @@
  */
 const socketConfig = {
     url: 'ws://127.0.0.1',
-    port: 8080
+    port: 8080,
+    endAction: {
+        enabled: true,
+        name: 'Twitch Follow Replay',
+        id: '809ea842-b561-48b4-ba6f-6ce873e0ecd6',
+        data: {
+            parameter1: '',
+            parameter2: ''
+        }
+    },
 };
 
 /**
@@ -42,8 +58,8 @@ const environmentConfig = {
  * @property {string} src - The source URL of the image.
  * @property {string} alt - The alternative text description of the image.
  * @property {Object} style - Style properties for the image.
- * @property {number} style.width - The width of the image in pixels.
- * @property {number} style.height - The height of the image in pixels.
+ * @property {number|string} style.width - The width of the image (in pixels or a CSS clamp value).
+ * @property {number|string} style.height - The height of the image (in pixels or a CSS auto value).
  * @property {string} [style.margin] - Optional margin style for the image.
  * @property {boolean} show - Flag to determine if the image should be displayed.
  */
@@ -88,12 +104,19 @@ const imageConfig = {
 
 /**
  * @typedef {Object} TextConfig
+ * @property {Object} containerStyle - CSS style object for the credits container.
  * @property {string} introText - Introductory text to display.
  * @property {string} outroText - Outro text to display.
+ * @property {Object} titleStyle - CSS style object for the title text.
+ * @property {Object} headingStyle - CSS style object for the heading text.
+ * @property {Object} headingIconStyle - CSS style object for the heading icon.
+ * @property {Object} roleStyle - CSS style object for the role text.
+ * @property {Object} nameStyle - CSS style object for the name text.
+ * @property {Object} endTitleStyle - CSS style object for the end title text.
  */
 
 /**
- * Text configuration settings for intro and outro text.
+ * Text configuration settings for intro and outro text, and styles.
  * @type {TextConfig}
  */
 const textConfig = {
@@ -116,7 +139,6 @@ const textConfig = {
         color: 'var(--wrapper-color)'
     },
     headingIconStyle: {
-        // Top margin and font size should match the heading style
         marginTop: 60,
         fontSize: 72,
         marginRight: 40,
@@ -173,7 +195,7 @@ const headingsConfig = {
         icon: "fa-solid fa-cake-candles",
     },
     hypeTrain: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-train'
     },
     users: {
@@ -185,7 +207,7 @@ const headingsConfig = {
         icon: 'fa-solid fa-people-group'
     },
     top: {
-        show: true,
+        show: false,
         icon: 'fa-solid fa-award'
     }
 };
