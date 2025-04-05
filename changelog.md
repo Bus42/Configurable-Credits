@@ -51,7 +51,6 @@ Description of changes made in this version.
 - Updates to README pertaining to Streamer.bot integration
 
 ### [1.0.4] - 2025-03-27
-### [1.0.4] - 2025-03-27
 
 - Decreased render time!
 - New fonts from [Fontawesome](https://fontawesome.com) for section headings
