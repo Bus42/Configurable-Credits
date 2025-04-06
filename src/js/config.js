@@ -191,7 +191,7 @@ const textConfig = {
  */
 const headingsConfig = {
     events: {
-        show: false,
+        show: true,
         icon: "fa-solid fa-cake-candles",
     },
     hypeTrain: {
