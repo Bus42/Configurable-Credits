@@ -27,12 +27,13 @@
  * @type {SocketConfig}
  */
 const socketConfig = {
-    url: 'ws://127.0.0.1',
+    url: '192.168.1.226',
     port: 8080,
     endAction: {
         enabled: true,
-        name: 'Twitch Follow Replay',
-        id: '809ea842-b561-48b4-ba6f-6ce873e0ecd6',
+        // Use either name or id, but not both. An empty string is considered falsey. ID is preferred but if you cannot obtain the ID (such as if you are using KVM), use the name.
+        name: 'Reset Stream',
+        // id: '',
         data: {
             parameter1: '',
             parameter2: ''
@@ -191,7 +192,7 @@ const textConfig = {
  */
 const headingsConfig = {
     events: {
-        show: false,
+        show: true,
         icon: "fa-solid fa-cake-candles",
     },
     hypeTrain: {
