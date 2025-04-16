@@ -97,6 +97,8 @@ Adds a **Requirements** section to the README
 Added the Streamer.bot client API and accounted for non-local hosted Streamer.bot instances. This is a breaking change as the WebSocket URL handling has changed to accommodate the Streamer.bot client API. This version is a complete rewrite of the WebSocket handling code and the Streamer.bot integration. The `Credits - Simple Scrolling.sb` file is no longer needed as the Streamer.bot client API handles the WebSocket connection and event handling.
 
 - Refactored to use the Streamer.bot client API via CDN
+- Moved async function out of useEffect to avoid unnecessary re-renders in `credits.js`
+- Added a try/catch block to the end action request to handle errors gracefully
 - Added a `client.js` file to handle the WebSocket connection and initialize the Streamer.bot client
 - Fixed a bug where the credits would not scroll if the `endAction` was enabled and the action was not found in Streamer.bot
 - Added a check to ensure the end action is valid before attempting to trigger it
