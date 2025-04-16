@@ -61,10 +61,15 @@ function useCreditsData() {
 	const [entries, setEntries] = React.useState([]);
 	const containerRef = React.useRef(null);
 
-	React.useEffect(async () => {
+	React.useEffect(() => {
+		fetchData();
+	}, []);
+
+
+	const fetchData = async () => {
 		const response = environmentConfig.testing ? await client.testCredits() : await client.getCredits(socketConfig.url, socketConfig.port);
 		console.groupCollapsed("Credits Data Response");
-		console.log("%cReceived credits data:", "color: blue; font-size: 16px; font-weight: bold;");
+		console.log("%cReceived credits data:", "color: #007AAF; font-size: 16px; font-weight: bold;");
 		console.table(response);
 		console.groupEnd();
 		if (response.status !== "ok") return;
@@ -82,7 +87,7 @@ function useCreditsData() {
 			if (typeof sectionData !== 'object') return;
 			const headingKey = section;
 			if (headingsConfig[section] && !headingsConfig[section].show) {
-				console.log(`Skipping section ${section} as it is not configured to show.`);
+				console.log(`Skipping ${section} section as it is not configured to show.`);
 				return;
 			};
 			if (headingsConfig[section] && headingsConfig[section].show) {
@@ -140,10 +145,19 @@ function useCreditsData() {
 				// Trigger end action after animation completes
 				setTimeout(async () => {
 					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-					if (socketConfig.endAction.id) {
-						await client.doAction({ id: socketConfig.endAction.id });
-					} else {
-						await client.doAction({ name: socketConfig.endAction.name });
+					try {
+						let res;
+						if (socketConfig.endAction.id) {
+							res = await client.doAction({ id: socketConfig.endAction.id });
+						} else {
+							res = await client.doAction({ name: socketConfig.endAction.name });
+						}
+						console.groupCollapsed("End Action Response");
+						console.log("%cEnd action triggered:", "color: #007AAF; font-size: 16px; font-weight: bold;");
+						console.table(res);
+						console.groupEnd();
+					} catch (error) {
+						console.error("Error triggering end action:", error);
 					}
 				}, duration);
 			} else {
@@ -153,8 +167,7 @@ function useCreditsData() {
 				}, duration);
 			}
 		}, 100);
-
-	}, []);
+	};
 
 	return { entries, containerRef };
 }
