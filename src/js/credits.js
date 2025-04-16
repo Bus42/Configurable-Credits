@@ -72,7 +72,10 @@ function useCreditsData() {
 		console.log("%cReceived credits data:", "color: #007AAF; font-size: 16px; font-weight: bold;");
 		console.table(response);
 		console.groupEnd();
-		if (response.status !== "ok") return;
+		if (response.status !== "ok") {
+			console.error("Error fetching credits data:", response.error);
+			return;
+		};
 
 		const seen = new Set();
 		const credits = [];
