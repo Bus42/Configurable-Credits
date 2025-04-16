@@ -63,7 +63,10 @@ function useCreditsData() {
 
 	React.useEffect(async () => {
 		const response = environmentConfig.testing ? await client.testCredits() : await client.getCredits(socketConfig.url, socketConfig.port);
-		console.log("Credits response: ", response);
+		console.groupCollapsed("Credits Data Response");
+		console.log("%cReceived credits data:", "color: blue; font-size: 16px; font-weight: bold;");
+		console.table(response);
+		console.groupEnd();
 		if (response.status !== "ok") return;
 
 		const seen = new Set();
@@ -133,11 +136,11 @@ function useCreditsData() {
 				iterations: 1
 			});
 
-			if (socketConfig.endAction.enabled) {
+			if (socketConfig.endAction.enabled && (socketConfig.endAction.id || socketConfig.endAction.name)) {
 				// Trigger end action after animation completes
 				setTimeout(async () => {
 					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-					await client.doAction(socketConfig.endAction.id);
+					await client.doAction(socketConfig.endAction.id || socketConfig.endAction.name);
 				}, duration);
 			} else {
 				// Log completion if no end action is configured.
