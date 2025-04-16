@@ -140,7 +140,11 @@ function useCreditsData() {
 				// Trigger end action after animation completes
 				setTimeout(async () => {
 					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-					await client.doAction(socketConfig.endAction.id || socketConfig.endAction.name);
+					if (socketConfig.endAction.id) {
+						await client.doAction({ id: socketConfig.endAction.id });
+					} else {
+						await client.doAction({ name: socketConfig.endAction.name });
+					}
 				}, duration);
 			} else {
 				// Log completion if no end action is configured.
