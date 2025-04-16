@@ -27,7 +27,7 @@
  * @type {SocketConfig}
  */
 const socketConfig = {
-    url: 'ws://127.0.0.1',
+    url: '192.168.1.226',
     port: 8080,
     endAction: {
         enabled: true,
