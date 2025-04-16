@@ -62,7 +62,7 @@ function useCreditsData() {
 	const containerRef = React.useRef(null);
 
 	React.useEffect(async () => {
-		const response = await client.testCredits();
+		const response = environmentConfig.testing ? await client.testCredits() : await client.getCredits(socketConfig.url, socketConfig.port);
 		console.log("Credits response: ", response);
 		if (response.status !== "ok") return;
 
