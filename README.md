@@ -69,7 +69,7 @@ In the file src/js/config.js, update:
 
 ```javascript
 export const socketConfig = {
-  url: 'ws://localhost', // or your server IP/domain
+  url: '127.0.0.1', // or your server IP/domain
   port: 8080             // match Streamer.bot WebSocket port - default is 8080
 };
 
@@ -78,11 +78,7 @@ export const environment = {
 };
 ```
 
-### 4 👉 Launch in a Browser or OBS
-
-#### 🌐 In a browser
-
-Simply open `index.html` in your browser. You’ll see the credits scroll based on the latest Twitch events.
+### 4 👉 Launch OBS or VS Code
 
 #### 🎥 In OBS
 
@@ -91,7 +87,10 @@ Simply open `index.html` in your browser. You’ll see the credits scroll based 
 3. Point it to your local index.html file, or host the file on a local server and use the URL
 4. Set width/height to match your scene layout (e.g. 1920x1080)
 
-This makes a perfect outro scene when wrapping up your stream!
+#### 💻 In VS Code
+
+1. Open the project folder in VS Code
+2. Use the built-in Live Server extension in VS Code to serve the HTML file
 
 ## 🛠️ Customization
 
@@ -123,6 +122,8 @@ Contributions are welcome! Feel free to:
 - Add support for new Twitch event types
 - Improve styling and animations
 - Refactor to support React + Vite for modern deployment
+
+There are some basic contribution guidelines in the `CONTRIBUTING.md` file. Please read them before submitting a pull request.
 
 ## 💬 Support
 
