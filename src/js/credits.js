@@ -61,11 +61,6 @@ function useCreditsData() {
 	const [entries, setEntries] = React.useState([]);
 	const containerRef = React.useRef(null);
 
-	React.useEffect(() => {
-		fetchData();
-	}, []);
-
-
 	const fetchData = async () => {
 		const response = environmentConfig.testing ? await client.testCredits() : await client.getCredits(socketConfig.url, socketConfig.port);
 		console.groupCollapsed("Credits Data Response");
@@ -171,6 +166,10 @@ function useCreditsData() {
 			}
 		}, 100);
 	};
+
+	React.useEffect(() => {
+		fetchData();
+	}, []);
 
 	return { entries, containerRef };
 }
