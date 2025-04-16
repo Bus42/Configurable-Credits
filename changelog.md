@@ -87,3 +87,15 @@ const socketConfig = {
 ```
 
 - Separated the `index.js` file into multiple files for better organization
+
+### [3.0.0] - 2025-04-16
+
+Added the Streamer.bot client API and accounted for non-local hosted Streamer.bot instances. This is a breaking change as the WebSocket URL handling has changed to accommodate the Streamer.bot client API. This version is a complete rewrite of the WebSocket handling code and the Streamer.bot integration. The `Credits - Simple Scrolling.sb` file is no longer needed as the Streamer.bot client API handles the WebSocket connection and event handling.
+
+- Refactored to use the Streamer.bot client API via CDN
+- Added a `client.js` file to handle the WebSocket connection and initialize the Streamer.bot client
+- Fixed a bug where the credits would not scroll if the `endAction` was enabled and the action was not found in Streamer.bot
+- Added a check to ensure the end action is valid before attempting to trigger it
+- Configured the `endAction` to use either the `id` or `name` field to find the action in Streamer.bot to get around not being able to copy the action ID from the Streamer.bot UI if using a KVM to connect to the machine running Streamer.bot
+- Changed port assignment in `config.js` to use only address, not protocol to comport with the Streamer.bot client API
+- Moved script tags in `index.html` to the head of the document for better performance
