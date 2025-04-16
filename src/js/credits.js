@@ -61,123 +61,114 @@ function useCreditsData() {
 	const [entries, setEntries] = React.useState([]);
 	const containerRef = React.useRef(null);
 
-	React.useEffect(() => {
-		const socket = new WebSocket(`${socketConfig.url}:${socketConfig.port}`);
-
-		socket.onopen = () => {
-			socket.send(JSON.stringify({
-				id: 'credits',
-				request: environmentConfig.testing ? 'TestCredits' : 'GetCredits'
-			}));
+	const fetchData = async () => {
+		const response = environmentConfig.testing ? await client.testCredits() : await client.getCredits(socketConfig.url, socketConfig.port);
+		console.groupCollapsed("Credits Data Response");
+		console.log("%cReceived credits data:", "color: #007AAF; font-size: 16px; font-weight: bold;");
+		console.table(response);
+		console.groupEnd();
+		if (response.status !== "ok") {
+			console.error("Error fetching credits data:", response.error);
+			return;
 		};
-		socket.onmessage = (event) => {
-			const response = JSON.parse(event.data);
-			if (response.id !== 'credits') return;
 
-			socket.close();
-			const seen = new Set();
-			const credits = [];
+		const seen = new Set();
+		const credits = [];
 
-			// Intro Section
-			credits.push(
-				<img key="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
-				<h1 key="introText" style={textConfig.titleStyle}>{textConfig.introText}</h1>
-			);
+		// Intro Section
+		credits.push(
+			<img key="introImg" src={imageConfig.introImage.src} style={imageConfig.introImage.style} alt={imageConfig.introImage.alt} hidden={!imageConfig.introImage.show} />,
+			<h1 key="introText" style={textConfig.titleStyle}>{textConfig.introText}</h1>
+		);
 
-			Object.entries(response).forEach(([section, sectionData]) => {
-				if (typeof sectionData !== 'object') return;
-				const headingKey = section;
-				if (headingsConfig[section].show) {
-					credits.push(<div style={{
-						display: 'flex',
-						flexDirection: 'row',
-						wrap: 'no-wrap',
-						justifyContent: 'center',
-						alignItems: 'center'
-					}} ><i className={headingsConfig[section].icon} style={textConfig.headingIconStyle} >{" "}</i>{" "}<h2 style={textConfig.headingStyle} key={headingKey} >{section}</h2></div>);
+		Object.entries(response).forEach(([section, sectionData]) => {
+			if (typeof sectionData !== 'object') return;
+			const headingKey = section;
+			if (headingsConfig[section] && !headingsConfig[section].show) {
+				console.log(`Skipping ${section} section as it is not configured to show.`);
+				return;
+			};
+			if (headingsConfig[section] && headingsConfig[section].show) {
+				credits.push(<div style={{
+					display: 'flex',
+					flexDirection: 'row',
+					wrap: 'no-wrap',
+					justifyContent: 'center',
+					alignItems: 'center'
+				}} ><i className={headingsConfig[section].icon} style={textConfig.headingIconStyle} >{" "}</i>{" "}<h2 style={textConfig.headingStyle} key={headingKey} >{section}</h2></div>);
 
-					Object.entries(sectionData).forEach(([key, values]) => {
-						if (!Array.isArray(values) || values.length === 0) return;
+				Object.entries(sectionData).forEach(([key, values]) => {
+					if (!Array.isArray(values) || values.length === 0) return;
 
-						const titleKey = `${section}-${key}`;
-						// TODO: Wrap the following in an if/else to check headingsConfig[section][key].show
-						credits.push(<h3 style={textConfig.roleStyle} key={titleKey}>{key}</h3>);
+					const titleKey = `${section}-${key}`;
+					// TODO: Wrap the following in an if/else to check headingsConfig[section][key].show
+					credits.push(<h3 style={textConfig.roleStyle} key={titleKey}>{key}</h3>);
 
-						values.forEach((entry) => {
-							const uniqueKey = `${titleKey}-${entry}`;
-							if (!seen.has(uniqueKey)) {
-								credits.push(<p style={textConfig.nameStyle} key={uniqueKey}>{entry}</p>);
-								seen.add(uniqueKey);
-							}
-						});
+					values.forEach((entry) => {
+						const uniqueKey = `${titleKey}-${entry}`;
+						if (!seen.has(uniqueKey)) {
+							credits.push(<p style={textConfig.nameStyle} key={uniqueKey}>{entry}</p>);
+							seen.add(uniqueKey);
+						}
 					});
-				}
+				});
+			}
+		});
+
+		// Outro Section
+		credits.push(
+			<h2 key="outroText" style={textConfig.endTitleStyle} >{textConfig.outroText}</h2>,
+			<img key="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
+		);
+
+		setEntries(credits);
+
+		// Animate the scrolling container
+		setTimeout(() => {
+			const el = containerRef.current;
+			if (!el) return;
+
+			const heightPercent = Math.ceil((el.offsetHeight / window.innerHeight) * -100) - 10;
+			const duration = ((el.offsetHeight / window.innerHeight) * 100 + 100) * 60;
+
+			el.animate([
+				{ top: '110%' },
+				{ top: `${heightPercent}%` }
+			], {
+				duration,
+				iterations: 1
 			});
 
-			// Outro Section
-			credits.push(
-				<h2 key="outroText" style={textConfig.endTitleStyle} >{textConfig.outroText}</h2>,
-				<img key="outroImg" src={imageConfig.outroImage.src} style={imageConfig.outroImage.style} alt={imageConfig.outroImage.alt} hidden={!imageConfig.outroImage.show} />
-			);
+			if (socketConfig.endAction.enabled && (socketConfig.endAction.id || socketConfig.endAction.name)) {
+				// Trigger end action after animation completes
+				setTimeout(async () => {
+					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
+					try {
+						let res;
+						if (socketConfig.endAction.id) {
+							res = await client.doAction({ id: socketConfig.endAction.id });
+						} else {
+							res = await client.doAction({ name: socketConfig.endAction.name });
+						}
+						console.groupCollapsed("End Action Response");
+						console.log("%cEnd action triggered:", "color: #007AAF; font-size: 16px; font-weight: bold;");
+						console.table(res);
+						console.groupEnd();
+					} catch (error) {
+						console.error("Error triggering end action:", error);
+					}
+				}, duration);
+			} else {
+				// Log completion if no end action is configured.
+				setTimeout(() => {
+					console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
+				}, duration);
+			}
+		}, 100);
+	};
 
-			setEntries(credits);
-
-			// Animate the scrolling container
-			setTimeout(() => {
-				const el = containerRef.current;
-				if (!el) return;
-
-				const heightPercent = Math.ceil((el.offsetHeight / window.innerHeight) * -100) - 10;
-				const duration = ((el.offsetHeight / window.innerHeight) * 100 + 100) * 60;
-
-				el.animate([
-					{ top: '110%' },
-					{ top: `${heightPercent}%` }
-				], {
-					duration,
-					iterations: 1
-				});
-
-				if (socketConfig.endAction.enabled) {
-					// Trigger end action after animation completes
-					setTimeout(() => {
-						console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-						// TODO: Send message to Streamer.bot server to trigger the action configured in the config.js file
-						const socket = new WebSocket(`${socketConfig.url}:${socketConfig.port}`);
-						socket.addEventListener('open', () => {
-							socket.send(JSON.stringify({
-								request: "DoAction",
-								action: {
-									id: socketConfig.endAction.id,
-									name: socketConfig.endAction.name,
-								},
-								args: {
-									parameter1: socketConfig.endAction.data.parameter1,
-									parameter2: socketConfig.endAction.data.parameter2,
-								},
-								id: "endAction"
-							}));
-						});
-						socket.addEventListener("message", (event) => {
-							console.table("Message from server: ", event.data);
-						});
-						socket.addEventListener("close", () => {
-							console.log("Socket closed");
-						});
-						socket.addEventListener("error", (event) => {
-							console.error("Socket error: ", event);
-						});
-					}, duration);
-					socket.close();
-				} else {
-					// Log completion if no end action is configured.
-					setTimeout(() => {
-						console.log("%cAnimation complete", "color: green; font-size: 20px; font-weight: bold;");
-					}, duration);
-				}
-			}, 100);
-
-		};
+	React.useEffect(() => {
+		fetchData();
 	}, []);
 
 	return { entries, containerRef };
