@@ -40,9 +40,10 @@ const textConfig = {
 - UI for configuration without a text editor
 
 ## Requirements
-  - PC
-  - [OBS](https://obsproject.com/) (or any other streaming software you can add a browser source)
-  - [Streamer.bot](https://streamer.bot)
+
+- PC
+- [OBS](https://obsproject.com/) (or any other streaming software you can add a browser source)
+- [Streamer.bot](https://streamer.bot)
 
 ---
 

@@ -88,7 +88,6 @@ const socketConfig = {
 
 - Separated the `index.js` file into multiple files for better organization
 
-
 ### [2.1.1] - 2025-03-28
 
 Adds a **Requirements** section to the README
