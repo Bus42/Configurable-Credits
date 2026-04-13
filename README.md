@@ -84,7 +84,21 @@ export const environment = {
 };
 ```
 
-### 4 👉 Launch OBS or VS Code
+### 4 👉 Run with Docker (Optional)
+
+If you have [Docker](https://www.docker.com/) installed, you can serve the website in a container without any other dependencies:
+
+```bash
+docker compose up
+```
+
+The site will be available at **http://localhost:8088**.
+
+To stop the container press `Ctrl+C`, or run `docker compose down`.
+
+---
+
+### 5 👉 Launch OBS or VS Code
 
 #### 🎥 In OBS
 
